@@ -1,6 +1,8 @@
 package com.artimanton.parsing;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 String lastPage = element.select("li>a[class=last]").attr("href");
                 int count = Integer.parseInt(lastPage.replace("?p=",""));
 
-                for (int i = 0; i <= count; i++) {
+                for (int i = 0; i <= 1; i++) {
                     String url = "https://veselivska-gromada.gov.ua/news/?p=" + i;
                     itemNews(url);
                 }
@@ -49,11 +51,21 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            Intent intent = new Intent(MainActivity.this, ListNewsActivity.class);
+            intent.putParcelableArrayListExtra("news", (ArrayList<? extends Parcelable>) listNews);
+            startActivity(intent);
+            finish();
+        }
+
         private void itemNews(String url){
             try {
                 String linkPageNews, linkImageNews, nameNews;
                 Document document = Jsoup.connect(url).get();
-                Elements els =  document.select("div[class=col-xs-12]>div[id=content_block]>div[class=one_object_news]");
+                Elements els =  document.select("div[class=col-xs-12]>div[id=content_block]>div*[class=one_object_news]");
                 for (Element el : els) {
                     linkPageNews = el.select("div[class=row]>div[class=col-sm-4]>a").attr("href");
                     linkImageNews = el.select("div[class=row]>div[class=col-sm-4]>a>img").attr("src");
