@@ -68,17 +68,15 @@ public class ListNewsActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull RVAdapter.NewsViewHolder holder, int position) {
-            String test = mNews.get(position).getNameNews().toString();
-            String test2 = mNews.get(position).getLinkPageNews().toString();
-            String test3 = mNews.get(position).getLinkImageNews().toString();
 
 
             holder.nameNews.setText(mNews.get(position).getNameNews().toString());
             holder.linkPageNews.setText(mNews.get(position).getLinkPageNews().toString());
 
             Picasso.get()
-                    .load(mNews.get(position).getLinkImageNews().toString())
-                    .fit().centerCrop()
+                    .load(mNews.get(position).getLinkImageNews())
+                    .resize(800, 800)
+                    .centerCrop()
                     .into(holder.imageNews);
 
 
