@@ -3,10 +3,12 @@ package com.artimanton.parsing;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class News implements Parcelable{
-    private String linkImageNews;
-    private String nameNews;
-    private String linkPageNews;
+import java.io.Serializable;
+
+public class News implements Parcelable, Serializable {
+    private String linkImageNews = null;
+    private String nameNews = null;
+    private String linkPageNews = null;
 
     public News(){
 
