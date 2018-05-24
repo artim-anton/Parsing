@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     linkImageNews = el.select("div[class=row]>div[class=col-sm-4]>a>img").attr("src");
                     nameNews = el.select("div[class=row]>div[class=col-sm-8]>p>a").text();
 
-                    Log.d(MY_LOG, linkPageNews + " " + linkImageNews + " " + nameNews);
+                    //Log.d(MY_LOG, linkPageNews + " " + linkImageNews + " " + nameNews);
                     listNews.add(new News(linkImageNews, nameNews, linkPageNews));
                     
                 }   

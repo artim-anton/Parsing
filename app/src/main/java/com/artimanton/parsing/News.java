@@ -6,9 +6,9 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class News implements Parcelable, Serializable {
-    private String linkImageNews = null;
-    private String nameNews = null;
-    private String linkPageNews = null;
+    private String linkImageNews = "1";
+    private String nameNews = "2";
+    private String linkPageNews = "3";
 
     public News(){
 
